@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">携帯時刻表</string>
+    <string name="title_activity_main">携帯時刻表</string>
+    <string name="menu_settings">設定</string>
+    <string name="search_as_line">路線を検索</string>
+    <string name="search_as_station">駅を検索</string>
+    <string name="search_text_hint">検索する文字列</string>
+    <string name="title_activity_train_time_table">列車時刻表</string>
+    <string name="table_title_station">駅</string>
+    <string name="table_title_time">時刻</string>
+
+</resources>

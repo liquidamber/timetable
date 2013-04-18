@@ -2,7 +2,14 @@
 <resources>
 
     <string name="app_name">Timetable</string>
+    <string name="title_activity_main">Mobile Timetable</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="search_as_line">Search as Line</string>
+    <string name="search_as_station">Search as Station</string>
+    <string name="search_text_hint">search query</string>
+    <string name="title_activity_train_time_table">Train Timetable</string>
+    <string name="table_title_station">Station</string>
+    <string name="table_title_time">Time</string>
+    <string name="title_activity_search_result">SearchResultActivity</string>
 
 </resources>
