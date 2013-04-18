@@ -11,7 +11,6 @@ public class SearchResultActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_result);
-//		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -24,4 +23,8 @@ public class SearchResultActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}
 }

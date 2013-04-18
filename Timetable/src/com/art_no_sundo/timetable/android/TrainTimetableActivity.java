@@ -1,15 +1,16 @@
 package com.art_no_sundo.timetable.android;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import com.art_no_sundo.timetable.DataSourceID;
 import com.art_no_sundo.timetable.Train;
-import com.art_no_sundo.timetable.MockDataSource;
+import com.art_no_sundo.timetable.WebEkikaraDataSource;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -28,6 +29,7 @@ public class TrainTimetableActivity extends Activity {
 		setContentView(R.layout.activity_train_time_table);
 //		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+		Log.d("TrainTimetableActivity", "LAUNCH ACTIVITY");
 		URL url;
 		try {
 			url = new URL("http://www.ekikara.jp/newdata/detail/4001011/36911.htm");
@@ -36,12 +38,20 @@ public class TrainTimetableActivity extends Activity {
 			e.printStackTrace();
 			url = null;
 		}
-		Train train = new Train(new DataSourceID(new MockDataSource(), url),
+		Train train = new Train(new DataSourceID(new WebEkikaraDataSource(), url),
 				"普通", "1001M", "普通", "113系", "予約不要", "毎日運転", "特記事項なし");
 		Train.Timetable timetable = null;
+		Log.d("TrainTimetableActivity", "Let's create task!");
+		final AsyncTrainTimetableQueryTask task =
+				new AsyncTrainTimetableQueryTask(this);
+		Log.d("TrainTimetableActivity", "Let's execute task!");
+		task.execute(train);
 		try {
-			timetable = train.getTimetable();
-		} catch (IOException e) {
+			timetable = task.get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
