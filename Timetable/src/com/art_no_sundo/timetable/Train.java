@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Train {
-	DataSourceID id;
+	private DataSourceId id;
 	private String name;
 	private String trainId;
 	private String type;
 	private String carInfo, ticketInfo, dateInfo, additionalInfo;
 
-	public Train(DataSourceID id,
+	public Train(DataSourceId id,
 		String name, String trainid, String type,
 		String car_info, String ticket_info, String date_info, String additional_info) {
 		this.id = id;
@@ -81,13 +81,13 @@ public class Train {
 		this.additionalInfo = additionalInfo;
 	}
 
-	public DataSourceID getId() {
+	public DataSourceId getId() {
 		return id;
 	}
 
 	public Timetable getTimetable()
 			throws IOException {
-		return this.getId().source.getTrainTimetable(this);
+		return this.getId().getSource().getTrainTimetable(this);
 	}
 
 	static public class TimeSegment {

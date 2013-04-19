@@ -3,34 +3,40 @@ package com.art_no_sundo.timetable;
 import java.io.IOException;
 
 public class Line {
-	DataSourceID id;
-	String name, nameyomi, company, companyyomi;
+	DataSourceId id;
+	String name, nameYomi, company, companyYomi;
 
 	public Line(Line obj) {
 		this.id = obj.id;
 		this.name = obj.name;
-		this.nameyomi = obj.nameyomi;
+		this.nameYomi = obj.nameYomi;
 		this.company = obj.company;
-		this.companyyomi = obj.companyyomi;
+		this.companyYomi = obj.companyYomi;
 	}
 
-	public Line(DataSourceID id, String name, String nameyomi, String company, String companyyomi) {
+	public Line(DataSourceId id,
+			String name, String nameYomi,
+			String company, String companyYomi) {
 		this.id = id;
 		this.name = name;
-		this.nameyomi = nameyomi;
+		this.nameYomi = nameYomi;
 		this.company = company;
-		this.companyyomi = companyyomi;
+		this.companyYomi = companyYomi;
+	}
+
+	public Line(DataSourceId dataSourceId, String name, String company) {
+		this(dataSourceId, name, name, company, company);
 	}
 
 	Timetable getLineTimeTable(Direction direction, Day day) throws IOException {
-		return id.source.getLineTimetable(this, direction, day);
+		return id.getSource().getLineTimetable(this, direction, day);
 	}
 
 	public static class Timetable {
-		DataSourceID id;
-		Line line;
-		DirectionLabel direction;
-		Day day;
+		private DataSourceId id;
+		private Line line;
+		private DirectionLabel direction;
+		private Day day;
 
 		Timetable(Timetable obj) {
 			this.id = obj.id;
@@ -39,7 +45,7 @@ public class Line {
 			this.day = obj.day;
 		}
 
-		Timetable(DataSourceID id, Line line, DirectionLabel direction, Day day) {
+		Timetable(DataSourceId id, Line line, DirectionLabel direction, Day day) {
 			this.id = id;
 			this.line = line;
 			this.direction = direction;

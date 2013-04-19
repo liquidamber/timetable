@@ -21,8 +21,8 @@ import com.art_no_sundo.timetable.Line.Timetable;
 import com.art_no_sundo.timetable.Train.TimeSegment;
 
 public class WebEkikaraDataSource implements DataSource {
-	TimetableHttpClient client;
-	XPathFactory xpathFac;
+	private TimetableHttpClient client;
+	private XPathFactory xpathFac;
 
 	private static String normalizeWhitespace(String str) {
 		return str.replaceAll("[ \\t\\r\\n]", "");
@@ -70,7 +70,7 @@ public class WebEkikaraDataSource implements DataSource {
 	public com.art_no_sundo.timetable.Train.Timetable getTrainTimetable(
 			Train train) throws IOException {
 		final String encoding = "Windows-31J";
-		URL url = train.getId().sourceid;
+		URL url = train.getId().getSourceId();
 		Train.Timetable timetable = train.new Timetable();
 
 		Node htmlNode = client.getNodeFromUrl(url, encoding);
@@ -161,7 +161,7 @@ public class WebEkikaraDataSource implements DataSource {
 				String stationName = getCleanText(stationLinkNode);
 				Station station = null;
 				try {
-					station = new Station(new DataSourceID(this,
+					station = new Station(new DataSourceId(this,
 							url.toURI().resolve(stationURIstr)
 									.toURL()), null, stationName, null);
 				} catch (URISyntaxException e) {

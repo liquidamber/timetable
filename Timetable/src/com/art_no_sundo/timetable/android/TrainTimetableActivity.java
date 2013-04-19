@@ -4,7 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-import com.art_no_sundo.timetable.DataSourceID;
+import com.art_no_sundo.timetable.DataSourceId;
 import com.art_no_sundo.timetable.Train;
 import com.art_no_sundo.timetable.WebEkikaraDataSource;
 
@@ -38,7 +38,7 @@ public class TrainTimetableActivity extends Activity {
 			e.printStackTrace();
 			url = null;
 		}
-		Train train = new Train(new DataSourceID(new WebEkikaraDataSource(), url),
+		Train train = new Train(new DataSourceId(new WebEkikaraDataSource(), url),
 				"普通", "1001M", "普通", "113系", "予約不要", "毎日運転", "特記事項なし");
 		Train.Timetable timetable = null;
 		Log.d("TrainTimetableActivity", "Let's create task!");

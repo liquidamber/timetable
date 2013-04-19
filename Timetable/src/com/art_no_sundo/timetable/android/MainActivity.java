@@ -1,7 +1,5 @@
 package com.art_no_sundo.timetable.android;
 
-import java.util.concurrent.ExecutionException;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
